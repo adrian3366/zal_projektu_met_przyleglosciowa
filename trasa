@@ -1,0 +1,29 @@
+package rysowanie;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+public class trasa extends JFrame {
+        public static boolean polozenie;
+	public trasa() {
+		super("Rysowanie");
+                EventQueue.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+                if (polozenie)
+                    setLocation(650, 300);
+                else
+                    setLocation(1000, 300);
+                polozenie = false;
+		JPanel panel = new panel();
+                panel.setBackground(Color.black);
+		add(panel);
+		pack();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+                        }
+                });
+	}
+}
