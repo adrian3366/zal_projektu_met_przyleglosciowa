@@ -1,0 +1,103 @@
+package algorytm;
+import java.util.Random;
+import static algorytm.TSP.IloscMiast;
+import static algorytm.TSP.IloscTras;
+import static algorytm.TSP.KRate;
+import static algorytm.TSP.iluPrzeszlo;
+import static algorytm.TSP.mutationRate;
+import static algorytm.TSP.tours;
+
+public class GA {
+    public static int[][] childMCrossover(int Child[][])
+    {
+        Random Rando = new Random();
+        boolean InUse[] = new boolean[IloscMiast];
+        boolean r[]=new boolean [IloscTras];
+        iluPrzeszlo=0;
+        for(int i=0; i<IloscTras; i++)      //losujenie osobników zdolnych i zliczenie par
+        {
+            r[i]=true;
+            int a = Rando.nextInt(IloscTras);
+            if(a<KRate)
+            {
+                iluPrzeszlo++;
+                r[i]=false;
+            }
+        }
+        if(iluPrzeszlo%2==1)        //jak nieparzystete to 1 mniej
+                iluPrzeszlo--;
+        for(int i=0; i<iluPrzeszlo/2; i++)
+        {
+            int a = Rando.nextInt(IloscTras);
+            int b = Rando.nextInt(IloscTras);
+            if(InUse[a] || InUse[b] || r[a] || r[b])
+                i--;
+            else
+            {
+                Child[i] = MCrossover(tours[a], tours[b]);
+                Child[i+iluPrzeszlo/2] = MCrossover(tours[b], tours[a]);
+                InUse[a]=true;InUse[b]=true;
+            }
+        }
+            return Child;
+    }
+        
+    public static int[] MCrossover(int Parent1[], int Parent2[])
+    {
+        Random Rando = new Random();
+        int a = Rando.nextInt(IloscTras);
+        int Child[] = new int [IloscMiast];                                     //Child[]
+        for(int i=1; i<IloscMiast; i++)
+        Child[0] = tours[a][i];
+        boolean InUse[] = new boolean [IloscMiast];                             //InUse[]
+        InUse[Child[0]] = true;
+        for(int i=1; i<IloscMiast; i++)
+            if((i%2) == 1)
+                if(InUse[Parent2[Child[i-1]]])
+                {
+                    int b = Rando.nextInt(IloscMiast);
+                    Child[i] = Parent2[b];
+                    if(InUse[Parent2[b]])
+                        i--;
+                    else
+                        InUse[Child[i]] = true;
+                }
+                else
+                {
+                    Child[i] = Parent2[Child[i-1]];
+                    InUse[Child[i]] = true;
+                }
+            else
+                if(InUse[Parent1[Child[i-1]]])
+                {
+                    int b = Rando.nextInt(IloscMiast);
+                    Child[i] = Parent1[b];
+                    if(InUse[Parent1[b]])
+                        i--;
+                    else
+                        InUse[Child[i]] = true;
+                }
+                else
+                {
+                    Child[i] = Parent1[Child[i-1]];
+                    InUse[Child[i]] = true;
+                }
+        return Child;
+    }
+    
+    public static int[] MMutate(int Child[])
+    {
+        Random Rando = new Random();
+        int a = Rando.nextInt(10);
+        int Miasto1 = Child[Rando.nextInt(IloscMiast)];
+        int Miasto2 = Child[Rando.nextInt(IloscMiast)];
+        int aa;
+        if(a < mutationRate)
+            {
+                aa = Child[Miasto1];
+                Child[Miasto1] = Child[Miasto2];
+                Child[Miasto2] = aa;
+            }
+    return Child;
+    }
+}
