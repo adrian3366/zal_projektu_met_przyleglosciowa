@@ -1,0 +1,171 @@
+import algorytm.City;
+import static algorytm.TSP.IloscEpok;
+import static algorytm.TSP.mutationRate;
+import static algorytm.TSP.KRate;
+import static algorytm.TSP.krok;
+import algorytm.Tours;
+import static rysowanie.trasa.polozenie;
+
+public class zaliczenieProjektu extends javax.swing.JFrame {
+
+    public zaliczenieProjektu() {
+        super("Algorytm genetyczny metodą przyległościową");
+        setLocation(650, 50);
+        City.MCity();
+        Tours.MTrasy2();
+        polozenie = true;
+        new rysowanie.trasa().repaint();
+        initComponents();
+    }
+    
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jMenu1 = new javax.swing.JMenu();
+        jColorChooser1 = new javax.swing.JColorChooser();
+        epokiPodpis = new javax.swing.JLabel();
+        epokiTxt = new javax.swing.JTextField();
+        krzyzowaniePodpis = new javax.swing.JLabel();
+        krzyzTxt = new javax.swing.JTextField();
+        mutacjaPodpis = new javax.swing.JLabel();
+        mutacjatxt = new javax.swing.JTextField();
+        wczytajWartosci = new javax.swing.JButton();
+        wyswietlanieEpok = new javax.swing.JLabel();
+        wyswietlanieEpokTxt = new javax.swing.JTextField();
+
+        jMenu1.setText("jMenu1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 153, 153));
+        setType(java.awt.Window.Type.UTILITY);
+
+        epokiPodpis.setText("Liczba epok");
+
+        epokiTxt.setText("100000");
+
+        krzyzowaniePodpis.setText("Parametr krzyzowania (0-10)");
+
+        krzyzTxt.setText("4");
+        krzyzTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                krzyzTxtActionPerformed(evt);
+            }
+        });
+
+        mutacjaPodpis.setText("Parametr mutacji (0-10)");
+
+        mutacjatxt.setText("4");
+        mutacjatxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mutacjatxtActionPerformed(evt);
+            }
+        });
+
+        wczytajWartosci.setText("Wczytaj wartosci");
+        wczytajWartosci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wczytajWartosciActionPerformed(evt);
+            }
+        });
+
+        wyswietlanieEpok.setText("Wyswietlanie epok co");
+
+        wyswietlanieEpokTxt.setText("1000");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(epokiPodpis)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(wyswietlanieEpok)
+                                    .addComponent(mutacjaPodpis)
+                                    .addComponent(krzyzowaniePodpis))
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(epokiTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(wyswietlanieEpokTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mutacjatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(krzyzTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(wczytajWartosci)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(epokiPodpis)
+                    .addComponent(epokiTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(wyswietlanieEpok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(wyswietlanieEpokTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mutacjaPodpis)
+                    .addComponent(mutacjatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(krzyzowaniePodpis)
+                    .addComponent(krzyzTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(wczytajWartosci)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void wczytajWartosciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wczytajWartosciActionPerformed
+        IloscEpok = Integer.valueOf(epokiTxt.getText());
+        mutationRate = Integer.valueOf(mutacjatxt.getText());
+        KRate = Integer.valueOf(krzyzTxt.getText());
+        krok = Integer.valueOf(wyswietlanieEpokTxt.getText());
+        algorytm.TSP.program();
+    }//GEN-LAST:event_wczytajWartosciActionPerformed
+
+    private void krzyzTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_krzyzTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_krzyzTxtActionPerformed
+
+    private void mutacjatxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mutacjatxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mutacjatxtActionPerformed
+
+    public static void main(String args[]) {
+        System.out.println("Program szuka nowych tras, modyfikując 20 podstawych.");
+        System.out.println("Następnie wyświetla długosc tras dla kolejnych  epok.");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new zaliczenieProjektu().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel epokiPodpis;
+    private javax.swing.JTextField epokiTxt;
+    private javax.swing.JColorChooser jColorChooser1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JTextField krzyzTxt;
+    private javax.swing.JLabel krzyzowaniePodpis;
+    private javax.swing.JLabel mutacjaPodpis;
+    private javax.swing.JTextField mutacjatxt;
+    private javax.swing.JButton wczytajWartosci;
+    private javax.swing.JLabel wyswietlanieEpok;
+    private javax.swing.JTextField wyswietlanieEpokTxt;
+    // End of variables declaration//GEN-END:variables
+}
