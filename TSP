@@ -1,0 +1,130 @@
+package algorytm;
+import java.util.Random;
+
+public class TSP {
+    public static int IloscEpok = 1000000;
+    public static int IloscTras = 10;
+    public static int IloscMiast = 20;
+    public static int tours[][];
+    public static int tours2[][];
+    public static int Cities[][];
+    public static int mutationRate = 4; //4 na 10
+    public static int KRate = 4; //4 na 10
+    public static int turniej = 5;
+    public static int iluPrzeszlo;
+    public static String s = " ";
+    public static int krok = 100000;
+    public static boolean rys = false;
+                                
+        
+    public static float MDistance(int Miasto1, int Miasto2)
+    {
+	int OdlegloscX = Math.abs(Cities [Miasto1][0] - Cities [Miasto2][0]);
+	int OdlegloscY = Math.abs(Cities [Miasto1][1] - Cities [Miasto2][1]);
+        return   (float) Math.sqrt((OdlegloscX*OdlegloscX) + (OdlegloscY*OdlegloscY));
+    }
+
+    public static int[][] dlugosc(int t2[][], int g, int i)
+    {
+        int zmienna[] = new int [IloscMiast];
+                for(int q=0; q<IloscMiast; q++)
+                {
+                    zmienna[q] = tours[g][q];
+                    tours[g][q] = t2[i][q];
+                    t2[i][q] = zmienna[q];
+                }
+        return t2;
+    }
+    
+    public static void sukcesja(int Child[][])
+    {
+        for(int i=0; i<iluPrzeszlo; i++)        //po child
+            for(int g=0; g<IloscTras; g++)      //po tours
+            {
+                float a1=0;
+                float a2=0;
+                for(int j=0; j<IloscMiast-1; j++)   //po miastach
+                {
+                        a1 += MDistance(tours[g][j], tours[g][j+1]);
+                        a2 += MDistance(Child[i][j], Child[i][j+1]);
+                }
+                if(a1>a2)
+                    dlugosc(Child, g, i);
+            }
+    }
+    
+    public static void dlugosc()
+    {
+        for(int g=0; g<IloscTras; g++)
+        {
+            float a = 0;
+            for(int j=0; j<IloscMiast-1; j++)
+                a += MDistance(tours[g][j], tours[g][j+1]);
+            System.out.print(Math.rint(a) + "  ");
+            //s += " " + float.toString(Math.rint(a))+ " ";
+        }
+        System.out.println("");
+    }
+    public static void selekcja()
+    {
+        int selekcja[][] = new int [IloscTras][IloscMiast];
+        Random Rando = new Random();
+        for(int j=0; j<IloscTras ; j++)//dla 10 
+        {
+            float a1=0;
+            float a2=0;
+            int t1= Rando.nextInt(IloscTras);
+            int t2= Rando.nextInt(IloscTras);
+            for(int i=0; i<IloscMiast-1 ; i++)
+            {
+                a1 += MDistance(tours[t1][i], tours[t1][i+1]);
+                a2 += MDistance(tours[t2][i], tours[t2][i+1]);
+            }
+            if(a1>a2)
+                for(int i=0; i<IloscMiast ; i++)
+                    selekcja[j][i]=tours[t2][i];
+            else
+                for(int i=0; i<IloscMiast ; i++)
+                    selekcja[j][i]=tours[t1][i];
+        }
+        for(int i=0; i<IloscTras; i++)        //po child
+            for(int g=0; g<IloscMiast; g++)      //po tours
+                tours2[i][g]=selekcja[i][g];
+    }
+
+    public static void program()
+    {
+        City.MCity();
+        Tours.MTrasy2();
+        int Child[][] = new int [IloscTras][IloscMiast];
+        tours2 = new int [IloscTras][IloscMiast];
+        System.out.print("\t");
+        dlugosc();
+        System.out.print(" ");
+        for(int i=0; i<IloscEpok+1 ; i++)
+        {
+            //selekcja();
+            GA.childMCrossover(Child);
+            for(int j=0; j<iluPrzeszlo ; j++)
+                 GA.MMutate(Child[j]);
+            sukcesja(Child);
+            if(i%krok==0)
+            {
+                System.out.print(i + ":\t");
+                dlugosc();
+            }
+        }
+        //new rysowanie.trasa().repaint();
+        System.out.print("Wyliczona trasa przebiega:\nx:\t");
+        for(int i=0; i<IloscTras ; i++)
+            System.out.print("|"+Cities[tours[0][i]][0]+"|\t");
+        System.out.print("\ny:\t");
+        for(int i=0; i<IloscTras ; i++)
+            System.out.print("|"+Cities[tours[0][i]][1]+"|\t");
+        System.out.println("\n\n");
+    }
+    
+    public static void main(String args[]) {
+        program();
+    }
+}
