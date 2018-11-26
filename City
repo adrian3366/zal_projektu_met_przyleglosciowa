@@ -1,0 +1,30 @@
+package algorytm;
+import static algorytm.TSP.Cities;
+import static algorytm.TSP.IloscMiast;
+
+public class City {
+    public static void MCity()
+    {
+        Cities = new int[IloscMiast][2];
+        Cities[0][0] = 60;      Cities[0][1] = 200;
+        Cities[1][0] = 180;     Cities[1][1] = 200;
+        Cities[2][0] = 80;      Cities[2][1] = 180;
+        Cities[3][0] = 140;     Cities[3][1] = 180;
+        Cities[4][0] = 20;      Cities[4][1] = 160;
+        Cities[5][0] = 100;     Cities[5][1] = 160;
+        Cities[6][0] = 200;     Cities[6][1] = 160;
+        Cities[7][0] = 140;     Cities[7][1] = 140;
+        Cities[8][0] = 40;      Cities[8][1] = 120;
+        Cities[9][0] = 100;     Cities[9][1] = 120;
+        Cities[10][0] = 180;    Cities[10][1] = 100;
+        Cities[11][0] = 60;     Cities[11][1] = 80;
+        Cities[12][0] = 120;    Cities[12][1] = 80;
+        Cities[13][0] = 180;    Cities[13][1] = 60;
+        Cities[14][0] = 20;     Cities[14][1] = 40;
+        Cities[15][0] = 100;    Cities[15][1] = 40;
+        Cities[16][0] = 200;    Cities[16][1] = 40;
+        Cities[17][0] = 20;     Cities[17][1] = 20;
+        Cities[18][0] = 60;     Cities[18][1] = 20;
+        Cities[19][0] = 160;    Cities[19][1] = 20;
+    }
+}
