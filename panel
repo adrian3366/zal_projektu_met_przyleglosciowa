@@ -1,0 +1,30 @@
+package rysowanie;
+
+import java.awt.*;
+import java.awt.geom.*;
+import javax.swing.JPanel;
+import java.util.concurrent.TimeUnit;
+import static algorytm.TSP.IloscMiast;
+import static algorytm.TSP.Cities;
+import static algorytm.TSP.tours;
+
+public class panel extends JPanel {
+	public panel() {
+		setPreferredSize(new Dimension(320, 350));
+	}
+	protected void paintComponent(Graphics g) 
+        {
+            super.paintComponent(g);
+            g.setColor(Color.magenta);
+            Graphics2D g2d = (Graphics2D) g;
+            Graphics2D g2 = (Graphics2D) g;
+            for(int i=0; i<IloscMiast-1; i++)
+            {
+            g2.draw(new Line2D.Double(Cities[tours[0][i]][0]*1.5, Cities[tours[0][i]][1]*1.5, Cities[tours[0][i+1]][0]*1.5, Cities[tours[0][i+1]][1]*1.5));
+            if(i%2==0)
+                g.setColor(Color.ORANGE);
+            else
+                g.setColor(Color.magenta);
+                
+            }}
+}
